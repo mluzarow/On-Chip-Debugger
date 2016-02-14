@@ -13,10 +13,10 @@ RAMBASE	equ	$3800	; 2KB SRAM located at 3800-3FFF
 ;***********************************************************************
 ; ASCII character definitions
 ;
-CR	    equ	$D	; RETURN
-LF	    equ	$A	; LINE FEED
-NULL	  equ	$0	; NULL
-DASH	  equ	'-'	; DASH (MINUS SIGN)
+CR	equ	$D	; RETURN
+LF	equ	$A	; LINE FEED
+NULL	equ	$0	; NULL
+DASH	equ	'-'	; DASH (MINUS SIGN)
 PERIOD	equ	'.'	; PERIOD
 ;************************************************************************
 
@@ -28,9 +28,9 @@ PERIOD	equ	'.'	; PERIOD
 
 startup_code
 
-	      movb	#$39,INITRM	    ; map RAM ($3800 - $3FFF)
+	movb	#$39,INITRM	  ; map RAM ($3800 - $3FFF)
         lds 	#$3FCE	    	  ; initialize stack pointer
-	      jsr 	ssinit	    	  ; initialize system clock and serial I/O
+	jsr 	ssinit	    	  ; initialize system clock and serial I/O
 
 ;***********************************************************************
 ; Start Mini-Monitor Application
@@ -44,21 +44,21 @@ main
         pshc
 ;--------------------------------------
 
-	      jsr	pmsg	; display welcome message upon reset/power-up
-	      fcb	CR,LF,CR,LF
-	      fcc	"9S12C32 Mini-Monitor V1.0"
-	      fcb	CR,LF
-	      fcc	"Created by:  name ####-A"
-	      fcb	CR,LF
-	      fcc	"Last updated:  September 28, 2012"
-	      fcb	CR,LF,NULL
+	jsr	pmsg	; display welcome message upon reset/power-up
+	fcb	CR,LF,CR,LF
+	fcc	"9S12C32 Mini-Monitor V1.0"
+	fcb	CR,LF
+	fcc	"Created by:  name ####-A"
+	fcb	CR,LF
+	fcc	"Last updated:  September 28, 2012"
+	fcb	CR,LF,NULL
 
 mprmpt	jsr	pmsg	; display monitor prompt
-	      fcb	CR,LF
-	      fcc	"=>"
-	      fcb	NULL
-	      jsr	inchar	; input monitor command
-	      jsr outchar
+	fcb	CR,LF
+	fcc	"=>"
+	fcb	NULL
+	jsr	inchar	; input monitor command
+	jsr outchar
 
 ;---Input Checking and Function Start---       
         ANDCC       #%11111011  ; initial clear Z
