@@ -1,2 +1,2 @@
-# ECE362-HW4-Debugger
+# On-Chip Debugger
 Debugging utility that runs natively on the microcontroller.
